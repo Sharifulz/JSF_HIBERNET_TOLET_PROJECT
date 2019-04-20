@@ -1,0 +1,664 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TO LET ADMIN</title>
+        <link rel="shortcut icon" type="image/png" href="resources/check.png"/>
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css"/>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootbox.min.js"></script>
+        <script type="text/javascript" src="js/myform.js"></script>
+    </h:head>
+    <h:body>
+        <!-- *********************HEADER ****************************-->
+
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-home" style="font-size: 1em" action="index.xhtml"></p:commandButton>
+                </center>
+            </div>
+            <div class="ui-g-6">
+                <center>
+                    <p:commandButton style="font-size: 1em" action="index.xhtml" value="TO LET- GET IT BEFORE ITS TOO LATE"></p:commandButton>
+                </center>
+
+            </div>
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-arrow-right" style="font-size: 1em" action="index.xhtml" value="CALL NOW"></p:commandButton>
+
+                </center>
+            </div>
+        </div>
+
+
+        <!-- ************************************************************* -->
+
+        <!-- *****************NAVBAR ************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- ADMIN PANEL" icon="pi pi-home">
+                </p:submenu>
+                <p:submenu label="VISIT PAGE" icon="pi pi-file">
+                    <p:menuitem value="HOME" url="#" />
+                    <p:separator />
+                    <p:menuitem value="CONTACTS" url="#" />
+                    <p:separator />
+                    <p:menuitem value="ADDVERTISEMENT" url="#" />
+                </p:submenu>
+
+                <p:submenu label="HELP" icon="pi pi-question">
+                    <p:menuitem value="ABOUT US" url="#" />  
+                </p:submenu>
+                <f:facet name="options">
+                    <!--  <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>-->
+                    <p:commandButton action="index.xhtml" value="Logout" icon="pi pi-home" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <!-- *********************NAVBAR END ******************************-->
+        <!-- ***********************START SEARCH TAB ***************** -->
+
+        <p:commandButton icon="pi pi-search" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+        <p:outputLabel value="DATA SEARCH" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+        <div class="ui-g">
+            <div class="ui-g-5">
+                <p:tabView scrollable="true" style="margin-top: 100px;">
+                    <p:tab title="SEARCH MEMBERS">
+                        <h:form>
+                            <center>
+                                <h:inputText value="#{memberDao.searchName}" 
+                                             style="margin:1px 10px 1px 1px; padding: 10px; height: 30px; border-radius: 5px; width: 225px; font-size: 18px;"/>
+                                <h:commandButton value="SEARCH BY CONTACTS" action="adminPanel.xhtml"
+                                                 style="padding: 5px; font-size: 15px; background-color: orange; color: black; border-color: orange; border-radius: 5px;"/> 
+                            </center>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="SEARCH  ADDVERTISEMENT">
+                        <h:form>
+                            <center>
+                                <h:inputText value="#{addvDao.searchLoc}" 
+                                             style="margin:1px 10px 1px 1px; padding: 10px; height: 30px; border-radius: 5px; width: 225px; font-size: 18px;"/>
+                                <h:commandButton value="SEARCH BY TYPE" action="adminPanel.xhtml" 
+                                                 style="padding: 5px; font-size: 15px; background-color: orange; color: black; border-color: orange; border-radius: 5px;"/> 
+                            </center>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="SEARCHING PAYMENT ">
+                        <h:form>
+                            <center>
+                                <h:inputText value="#{paymentDao.searchId}" 
+                                             style="margin:1px 10px 1px 1px; padding: 10px; height: 30px; border-radius: 5px; width: 225px; font-size: 18px;"/>
+                                <h:commandButton value="SEARCH BY ID" action="adminPanel.xhtml" 
+                                                 style="padding: 5px; font-size: 15px; background-color: orange; color: black; border-color: orange; border-radius: 5px;"/> 
+                            </center>
+                        </h:form>
+                    </p:tab>
+
+                </p:tabView>
+            </div>
+            <div class="ui-g-7">
+                <p:dataTable var="me" value="#{memberDao.list1a}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{me.id}"/>
+                    </p:column>
+
+                    <p:column headerText="MEMBER NAME">
+                        <h:outputText value="#{me.name}"/>
+                    </p:column>
+
+                    <p:column headerText="MEMBER EMAIL">
+                        <h:outputText value="#{me.email}"/>
+                    </p:column>
+
+                    <p:column headerText="GENDER">
+                        <h:outputText value="#{me.gender}"/>
+                    </p:column>
+
+                    <p:column headerText="PASSWORD">
+                        <h:outputText value="#{me.pass}"/>
+                    </p:column>
+
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{me.cont}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:separator/>
+
+                <p:dataTable var="add" value="#{addvDao.list2a}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{add.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{add.addtype}"/>
+                    </p:column>
+                    <p:column headerText="LOCATION">
+                        <h:outputText value="#{add.loc}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TITLE">
+                        <h:outputText value="#{add.ttl}"/>
+                    </p:column>
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{add.cont}"/>
+                    </p:column>
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{add.date}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:separator/>
+
+                <p:dataTable var="pay" value="#{paymentDao.list3a}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{pay.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD NAME">
+                        <h:outputText value="#{pay.addname}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{pay.addtype}" />
+                    </p:column>
+
+                    <p:column headerText="AMOUNT">
+                        <h:outputText value="#{pay.amount}"/>
+                    </p:column>
+
+                    <p:column headerText="PAYMENT STATUS">
+                        <h:outputText value="#{pay.paytype}"/>
+                    </p:column>
+
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{pay.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
+
+        <p:separator style="margin-top: 25px;"/>
+
+        <!-- *********************SEARCH BOX END ******************************-->
+
+        <p:separator style="margin-top: 25px;"/>
+
+        <!-- *********************WELCOME HEAD START ******************************-->
+
+        <p:commandButton icon="pi pi-user" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+        <p:outputLabel value="WELCOME TO ADMIN PANEL" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+
+        <p:accordionPanel>
+            <p:tab title="Welcome To Admin Panel">
+                <h:panelGrid columns="1" cellpadding="10">
+                    <!--                    <p:graphicImage library="img" name="cover1.jpg" />-->
+                   
+                        <p:graphicImage library="img" name="banner.jpg" style="width: 920px; height: 350px; margin-left: 210px;"></p:graphicImage>
+                    
+
+                </h:panelGrid>
+            </p:tab>
+        </p:accordionPanel>
+
+        <p:separator style="margin-top: 25px; color: red;"/>
+
+
+        <p:commandButton icon="pi pi-plus" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+        <p:outputLabel value="ADD NEW RECORDS" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+        <!-- ******************* INSERT SECTION START *******************-->
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <p:tabView scrollable="true">
+                    <p:tab title="ADD NEW MEMBER">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="NAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.name}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="EMAIL" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.email}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="GENDER" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:selectOneMenu value="#{mem.gender}" id="console" style="width:125px; margin-left: 135px;">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="MALE" itemValue="MALE" />
+                                        <f:selectItem itemLabel="FEMALE" itemValue="FEMALE" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="CONTACTS" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.cont}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="PASSWORD" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:password value="#{mem.pass}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:password>
+                                </p:panelGrid>
+                                <p:commandButton value="ADD NEW MEMBER" action="#{mem.doSend()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+
+                    </p:tab>
+                    <p:tab title="ADD NEW ADDVERTISEMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.addtype}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="LOCATION" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.loc}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:calendar value="#{add.date}" style="background-color: white; margin-left: 60px;"></p:calendar>
+
+                                    <p:outputLabel value="CONTACTS" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.cont}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TITLE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.ttl}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:commandButton value="ADD NEW ADDVERTISEMENT" action="#{add.doSend()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                    <p:tab title="CREATE PAYMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="NAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.addname}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.addtype}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="AMOUNT" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.amount}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+
+                                    <p:outputLabel value="PAY TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:selectOneMenu value="#{pay.paytype}" id="console" style="width:125px; margin-left: 135px;">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="PAID" itemValue="PAID" />
+                                        <f:selectItem itemLabel="DUE" itemValue="DUE" />
+                                    </p:selectOneMenu>
+
+
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:calendar value="#{pay.date}" style="background-color: white; margin-left: 80px;"></p:calendar>
+                                </p:panelGrid>
+                                <p:commandButton value="CREATE PAYMENT" action="#{pay.doSend()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                </p:tabView>
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+
+
+
+
+        <!-- *********************DASHBOARD START ******************************-->
+        <p:commandButton icon="pi pi-list" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+        <p:outputLabel value="EXISTING ALL RECORDS" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+
+        <p:outputLabel value="DATA BOARD" style="font-size: 40px; text-align: center; color: orange; margin-left: 25px;"></p:outputLabel>
+
+        <p:tabView orientation="left">
+            <p:tab title="ALL MEMBERS">  
+                <!-- ***********DATA TABLE ONE **************-->
+                <!-- ***********DATA TABLE ONE **************-->
+                <p:dataTable var="m" value="#{mem.list1}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{m.id}"/>
+                    </p:column>
+
+                    <p:column headerText="NAME">
+                        <h:outputText value="#{m.name}"/>
+                    </p:column>
+
+                    <p:column headerText="EMAIL">
+                        <h:outputText value="#{m.email}"/>
+                    </p:column>
+
+                    <p:column headerText="GENDER">
+                        <h:outputText value="#{m.gender}"/>
+                    </p:column>
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{m.cont}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="ALL ADVERTISEMENT">
+                <!-- ***********DATA TABLE TWO **************-->
+                <!-- ***********DATA TABLE TWO **************-->
+                <p:dataTable var="add" value="#{add.list2}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{add.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{add.addtype}"/>
+                    </p:column>
+                    <p:column headerText="LOCATION">
+                        <h:outputText value="#{add.loc}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TITLE">
+                        <h:outputText value="#{add.ttl}"/>
+                    </p:column>
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{add.cont}"/>
+                    </p:column>
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{add.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="ALL PAYMENT">
+                <!-- ***********DATA TABLE THREE **************-->
+                <!-- ***********DATA TABLE THREE **************-->
+                <p:dataTable var="pay" value="#{pay.list3}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{pay.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD NAME">
+                        <h:outputText value="#{pay.addname}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{pay.addtype}" />
+                    </p:column>
+
+                    <p:column headerText="AMOUNT">
+                        <h:outputText value="#{pay.amount}"/>
+                    </p:column>
+
+                    <p:column headerText="PAYMENT STATUS">
+                        <h:outputText value="#{pay.paytype}" />
+                    </p:column>
+
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{pay.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="">
+
+            </p:tab>
+            <p:tab title="">
+
+            </p:tab>
+            <p:tab title="">
+
+            </p:tab>
+            <p:tab title="">
+
+            </p:tab>
+            <p:tab title="">
+
+            </p:tab>
+        </p:tabView>
+
+        <p:separator style="margin-top: 25px;"/>
+
+        <!-- *********************DASHBOARD END ******************************-->
+
+
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <p:commandButton icon="pi pi-pencil" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+                <p:outputLabel value="EDIT EXISTING DATA" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+                <p:tabView scrollable="true">
+                    <p:tab title="EDIT MEMBER">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="NAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.name}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="EMAIL" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.email}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="GENDER" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:selectOneMenu value="#{mem.gender}" id="console" style="width:125px; margin-left: 135px;">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="MALE" itemValue="MALE" />
+                                        <f:selectItem itemLabel="FEMALE" itemValue="FEMALE" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="CONTACTS" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.cont}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="PASSWORD" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:password value="#{mem.pass}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:password>
+                                </p:panelGrid>
+                                <p:commandButton value="UPDATE MEMBER" action="#{mem.doUpdate()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+
+                    </p:tab>
+                    <p:tab title="EDIT ADDVERTISEMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.addtype}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="LOCATION" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.loc}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:calendar value="#{add.date}" style="background-color: white; margin-left: 60px;"></p:calendar>
+
+                                    <p:outputLabel value="CONTACTS" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.cont}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TITLE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.ttl}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:commandButton value="UPDATE ADD" action="#{add.doUpdate()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                    <p:tab title="EDIT PAYMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="NAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.addname}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.addtype}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="AMOUNT" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.amount}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+
+                                    <p:outputLabel value="PAY TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:selectOneMenu value="#{pay.paytype}" id="console" style="width:125px; margin-left: 135px;">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="PAID" itemValue="PAID" />
+                                        <f:selectItem itemLabel="DUE" itemValue="DUE" />
+                                    </p:selectOneMenu>
+
+
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:calendar value="#{pay.date}" style="background-color: white; margin-left: 80px;"></p:calendar>
+                                </p:panelGrid>
+                                <p:commandButton value="UPDATE PAYMENT" action="#{pay.doUpdate()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                </p:tabView>
+            </div>
+
+
+
+            <div class="ui-g-6">
+                <p:commandButton icon="pi pi-user-minus" style="font-size: 2em; margin:20px;" action="index.xhtml"></p:commandButton>
+                <p:outputLabel value="DELETE RECORDS" style="font-size: 40px; text-align: center;"></p:outputLabel>
+
+                <p:tabView scrollable="true" style="margin-top: 200px;">
+                    <p:tab title="REMOVE MEMBER">
+                        <center>
+                            <p:tooltip />
+                            <h:form>
+
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{mem.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:commandButton value="REMOVE MEMBER" action="#{mem.doDelete()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                    <p:tab title="REMOVE ADDVERTISEMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:commandButton value="REMOVE ADDVERTISEMENT" action="#{add.doDelete()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                    <p:tab title="REMOVE PAYMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{pay.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:commandButton value="REMOVE PAYMENT INFO" actionListener="#{pay.doDelete()}" action="adminPanel.xhtml"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                </p:tabView>
+            </div>
+        </div>
+
+        <!-- ************************* STATISTIC  ***********************-->
+
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="ANNUAL PROGRESS" style="margin-bottom:0">
+                        <p:tab title="STATISTICS !">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:graphicImage library="img" name="stat1.gif" style="width: 100%; height: 250px;"></p:graphicImage>
+
+
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form> 
+            </div>
+            <div class="ui-g-3">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="PROJECT SUCCESSFULLY DONE" style="margin-bottom:0">
+                        <p:tab title="STATISTICS !">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:graphicImage library="img" name="stat2.gif" style="width: 100%; height: 250px;"></p:graphicImage>
+
+
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form> 
+            </div>
+            <div class="ui-g-3">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="CUSTOMER SATISFACTION" style="margin-bottom:0">
+                        <p:tab title="STATISTICS !">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:graphicImage library="img" name="stat3.gif" style="width: 100%; height: 250px;"></p:graphicImage>
+
+
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form> 
+            </div>
+            <div class="ui-g-3">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="PROGRESS SPEED" style="margin-bottom:0">
+                        <p:tab title="STATISTICS !">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:graphicImage library="img" name="stat4.gif" style="width: 100%; height: 250px;"></p:graphicImage>
+
+
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form> 
+            </div>
+        </div>
+
+        <!-- *******************FOOTER ************************** -->
+
+        <!-- *****************FOOTER ************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+
+
+
+                <f:facet name="options">
+                    <h:outputText value="CONTACT US" style="margin: 25px; margin-left: 35px; font-size: 20px; color: white;"></h:outputText>
+                    <a href="https://www.facebook.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">FACEBOOK</a>
+                    <a href="https://www.youtube.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">YOU TUBE</a>
+                    <a href="https://mail.google.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">MAIL NOW</a>
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </h:body>
+</html>
+

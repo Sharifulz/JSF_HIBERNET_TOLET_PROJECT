@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>ALL ADVERTISEMENT</title>
+    </h:head>
+    <h:body>
+        <!-- *********************HEADER ****************************-->
+
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-home" style="font-size: 1em" action="index.xhtml"></p:commandButton>
+                </center>
+            </div>
+            <div class="ui-g-6">
+                <center>
+                    <p:commandButton style="font-size: 1em" action="index.xhtml" value="TO LET- GET IT BEFORE ITS TOO LATE"></p:commandButton>
+                </center>
+
+            </div>
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-arrow-right" style="font-size: 1em" action="index.xhtml" value="CALL NOW"></p:commandButton>
+
+                </center>
+            </div>
+        </div>
+        <!-- *****************NAVBAR ************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- ADMIN PANEL" icon="pi pi-home">
+                </p:submenu>
+                <p:submenu label="VISIT PAGE" icon="pi pi-file">
+                    <p:menuitem value="HOME" url="#" />
+                    <p:separator />
+                    <p:menuitem value="CONTACTS" url="#" />
+                    <p:separator />
+                    <p:menuitem value="ADDVERTISEMENT" url="#" />
+                </p:submenu>
+
+                <p:submenu label="HELP" icon="pi pi-question">
+                    <p:menuitem value="ABOUT US" url="#" />  
+                </p:submenu>
+                <f:facet name="options">
+                    <p:commandButton action="addNew" value="SHOW ALL MY ADDS" icon="pi pi-search" style="margin-right: 30px;" />
+                    <p:commandButton action="index.xhtml" value="Logout" icon="pi pi-home" style="margin-right: 30px;" />
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <!-- *********************NAVBAR END ******************************-->
+        <!-- *********************MEMBER ADDS DATA TABLE ******************************-->
+
+        <!-- ***********DATA TABLE TWO **************-->
+        <!-- ***********DATA TABLE TWO **************-->
+        <!--
+        <p:dataTable var="add" value="#{addvDao.list2b}">
+            <p:column headerText="ID">
+                <h:outputText value="#{add.id}"/>
+            </p:column>
+
+            <p:column headerText="ADD TYPE">
+                <h:outputText value="#{add.addtype}"/>
+            </p:column>
+            <p:column headerText="LOCATION">
+                <h:outputText value="#{add.loc}"/>
+            </p:column>
+
+            <p:column headerText="ADD TITLE">
+                <h:outputText value="#{add.ttl}"/>
+            </p:column>
+            <p:column headerText="CONTACTS">
+                <h:outputText value="#{add.cont}"/>
+            </p:column>
+            <p:column headerText="DATE">
+                <h:outputText value="#{add.date}"/>
+            </p:column>
+        </p:dataTable>
+
+-->
+        <!--  *******************CARD VIEW DATA ADD ********************-->
+        
+        <br/>
+        <br/>
+        <br/>
+        <h:form>
+            <p:dataGrid var="car" value="#{addvDao.list2b}" columns="3" layout="grid"
+                        rows="12" paginator="true" id="cars"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    HOUSE/SHOP FOR SALE
+                </f:facet>
+
+                <p:panel header="ALL INFORMATION" style="text-align:center">
+                    <h:panelGrid columns="2"   style="text-align: left;">
+                        <p:outputLabel value="ADD TITLE" style="text-align: left;"></p:outputLabel>
+                        <h:outputText value="#{car.ttl}" style="text-align: left;" />
+                        
+                        <p:outputLabel value="ADD TYPE" style="text-align: left;"></p:outputLabel>
+                        <h:outputText value="#{car.addtype}" />
+                       
+                        <p:outputLabel value="ADD LOCATION" style="text-align: left;"></p:outputLabel>
+                        <h:outputText value="#{car.loc}" />
+                        
+                        <p:outputLabel value="CONTACTS ADDRESS" style="text-align: left;"></p:outputLabel>
+                        <h:outputText value="#{car.cont}" />
+                        
+                        <p:outputLabel value="DEADLINE" style="text-align: left;"></p:outputLabel>
+                        <h:outputText value="#{car.date}" />
+                        <p:outputLabel/>
+                        <p:commandLink oncomplete="PF('carDialog').show()" title="View Detail">
+                              <p:commandButton action="addNew" value="SHOW AS TABLE" icon="pi pi-search" style="margin-right: 120px;" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+
+            <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:dataTable var="add" value="#{addvDao.list2b}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{add.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{add.addtype}"/>
+                    </p:column>
+                    <p:column headerText="LOCATION">
+                        <h:outputText value="#{add.loc}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TITLE">
+                        <h:outputText value="#{add.ttl}"/>
+                    </p:column>
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{add.cont}"/>
+                    </p:column>
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{add.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

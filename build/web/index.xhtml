@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TO LET HOME</title>
+        <link rel="shortcut icon" type="image/png" href="img/check.png"/>
+    </h:head>
+    <h:body>
+        <!-- *********************HEADER ****************************-->
+
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-home" style="font-size: 1em" action="index.xhtml"></p:commandButton>
+                </center>
+            </div>
+            <div class="ui-g-6">
+                <center>
+                    <p:commandButton style="font-size: 1em" action="index.xhtml" value="TO LET- GET IT BEFORE ITS TOO LATE"></p:commandButton>
+                </center>
+
+            </div>
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-arrow-right" style="font-size: 1em" action="newMember.xhtml" value="BECOME A MEMBER"></p:commandButton>
+
+                </center>
+            </div>
+        </div>
+
+
+        <!-- ************************************************************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+                <p:submenu label="VISIT PAGE" icon="pi pi-file">
+                    <p:menuitem value="HOME" url="#" />
+                    <p:separator />
+                    <p:menuitem value="CONTACTS" url="#" />
+                    <p:separator />
+                    <p:menuitem value="ADDVERTISEMENT" url="#" />
+                </p:submenu>
+
+                <p:submenu label="HELP" icon="pi">
+                    <p:menuitem value="ABOUT US" url="#" />  
+                </p:submenu>
+
+                <p:submenu style="margin-left: 450px; background-color: orange;" label="LOG IN" icon="pi pi-power-off">
+                    <p:menuitem value="ADMIN" url="http://localhost:8080/ToLetFace/faces/adminLogin.xhtml" />  
+                    <p:menuitem value="MEMBER" url="http://localhost:8080/ToLetFace/faces/memberLogin.xhtml" />  
+                </p:submenu>
+
+            </p:menubar>
+        </h:form>
+
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <!-- ****************CAROUSEL *******************-->
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <h:form id="form">
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="OUR FEATURES" style="margin-bottom:0">
+                        <p:tab title="Godfather Part I">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:commandButton icon="pi pi-check" style="font-size: 3em"></p:commandButton>
+                                <h:outputText value="GIVE ALL YOUR ADDS IN ONE PLACE" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part II">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+                                <p:commandButton icon="pi pi-dollar" style="font-size: 3em"></p:commandButton>
+
+                                <h:outputText value="ADDS WITH MINIMUM COST"  style="font-size: 25px; text-align: center; color: yellow;"/>
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part III">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+                                <p:commandButton icon="pi pi-replay" style="font-size: 3em"></p:commandButton>
+
+                                <h:outputText value="FLEXIBLE AND RESPONSIVE FOR REPLACEMENT" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:carousel>
+                </h:form>   
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+
+        <!--  *******************CARD VIEW DATA ADD ********************-->
+
+        <br/>
+        <br/>
+        <br/>
+        <h:form>
+            <p:dataGrid var="car" value="#{addvDao.list2c}" columns="3" layout="grid"
+                        rows="12" paginator="true" id="cars"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16" >
+
+                <f:facet name="header">
+                    HOUSE/SHOP FOR SALE
+                </f:facet>
+
+                <p:panel header="ALL INFORMATION" style="text-align:center;">
+                    <center>
+                        <p:commandButton icon="pi pi-home" style="font-size: 2em"></p:commandButton><br/><br/>
+                        <p:graphicImage library="img" name="card#{car.id}.gif" style="height: 200px; width: 350px; text-align: center; border-radius: 5px;"></p:graphicImage>
+                    </center>
+                    <h:panelGrid columns="2"   style="text-align: left; background-color: #002333; border-radius: 10px; padding: 10px;">
+
+                        <p:outputLabel value="ADD TITLE" style="text-align: left; margin-left: 15px;"></p:outputLabel>
+                        <h:outputText value="#{car.ttl}" style="text-align: left; margin-left: 15px;" />
+
+                        <p:outputLabel value="ADD TYPE" style="text-align: left; margin-left: 15px;"></p:outputLabel>
+                        <h:outputText value="#{car.addtype}" style="text-align: left; margin-left: 15px;" />
+
+                        <p:outputLabel value="LOCATION" style="text-align: left;margin-left: 15px;"></p:outputLabel>
+                        <h:outputText value="#{car.loc}"  style="text-align: left; margin-left: 15px;"/>
+
+                        <p:outputLabel value="CONTACTS" style="text-align: left; margin-left: 15px;"></p:outputLabel>
+                        <h:outputText value="#{car.cont}" style="text-align: left; margin-left: 15px;"/>
+
+                        <p:outputLabel value="DEADLINE" style="text-align: left; margin-left: 15px;"></p:outputLabel>
+                        <h:outputText value="#{car.date}" style="text-align: left; margin-left: 15px;"/><p:outputLabel/>
+<p:outputLabel></p:outputLabel>
+                        <p:commandLink oncomplete="PF('carDialog').show()" title="View Detail">
+                            <p:commandButton action="addNew" value="DETAILS" icon="pi pi-search" style="margin-right: 10px; margin-top: 25px; margin-left: 80px; margin-bottom: 20px;" />
+
+                        </p:commandLink>
+
+<a href="paymentPanel.xhtml" style="margin-top: 20px; margin-left: 10px; font-size: 20px; border: 1px solid yellow; padding: 5px;">BOOKING</a>
+                        
+
+                        <br/>
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+
+            <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:dataTable var="add" value="#{addvDao.list2c}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{add.id}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TYPE">
+                        <h:outputText value="#{add.addtype}"/>
+                    </p:column>
+                    <p:column headerText="LOCATION">
+                        <h:outputText value="#{add.loc}"/>
+                    </p:column>
+
+                    <p:column headerText="ADD TITLE">
+                        <h:outputText value="#{add.ttl}"/>
+                    </p:column>
+                    <p:column headerText="CONTACTS">
+                        <h:outputText value="#{add.cont}"/>
+                    </p:column>
+                    <p:column headerText="DATE">
+                        <h:outputText value="#{add.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:dialog>
+             
+            
+            <!-- ******************************************CARD @ ***********-->
+            
+            
+            
+            <p:dialog header="PAY TO CONFIRM BOOKING" widgetVar="carDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    
+                        <center>
+                            <h:form>
+                                
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:inputText value="#{pay.id}" style="width: 250px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText><br/>
+                                    <p:outputLabel value="USERNAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:inputText value="#{pay.addname}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText><br/>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:inputText value="#{pay.addtype}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText><br/>
+                                    <p:outputLabel value="AMOUNT" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:inputText value="#{pay.amount}" style="width: 250px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText><br/>
+
+                                    <p:outputLabel value="PAY TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:selectOneMenu value="#{pay.paytype}" id="console" style="width:125px; margin-left: 135px;">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="PAID" itemValue="PAID" />
+                                        <f:selectItem itemLabel="DUE" itemValue="DUE" />
+                                    </p:selectOneMenu><br/>
+
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel><br/>
+                                    <p:calendar value="#{pay.date}" style="background-color: white; margin-left: 80px;"></p:calendar><br/>
+                               
+                                <p:commandButton value="CREATE PAYMENT" action="#{pay.doSendByMember()}"></p:commandButton><br/>
+                               
+                            </h:form>
+                        </center>
+  
+            </p:dialog>
+            <!-- ******************************************CARD @ ***********-->
+        </h:form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <h:form>
+                    
+
+                    <p:panel id="basic" header="SUPPORT MEMBER" footer="Movie Details" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <center>
+                                <p:graphicImage library="img" name="profile1.jpg" style="width: 350px; height: 250px; margin-left: 15px; border-radius: 10px;"></p:graphicImage>
+                            </center>
+                            <h:outputText style="text-align: justify"
+                                          value="This is Ann Handley's website, and this is a bit of copy about her ... That's not giving you a lot of detail, is it? So read more here." />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+            <div class="ui-g-4">
+                <h:form>
+                   
+
+                    <p:panel id="basic" header="COMMUNICATION PARTNER" footer="Movie Details" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <center>
+                                <p:graphicImage library="img" name="profile2.jpg" style="width: 350px; height: 250px; margin-left: 15px; border-radius: 10px;"></p:graphicImage>
+                            </center>
+
+                            <h:outputText style="text-align: justify"
+                                          value="Affiliation, as shown in the screenshot below -- is unique and seldom mentioned in professional bios today . This New England-based DJ has single-handedly captured the Likes of more than 2,000 people in and beyond Boston, MA. " />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+            <div class="ui-g-4">
+                <h:form>
+                   
+
+                    <p:panel id="basic" header="TECHNICAL TEAM LEADER" footer="Movie Details" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <center>
+                                <p:graphicImage library="img" name="profile3.jpg" style="width: 350px; height: 250px; margin-left: 15px; border-radius: 10px;"></p:graphicImage>
+                            </center>
+                            <h:outputText style="text-align: justify"
+                                          value="Lena Axelsson's bio, for instance. She's a marriage and family therapist -- a job where empathy and compassion are a big part of the job description. That's why she chooses to open her bio with a great introductory ." />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+        <!-- *******************FOOTER ************************** -->
+
+        <!-- *****************FOOTER ************* -->
+        <br/>
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="CONTACT US" style="margin-bottom:0">
+                        <p:tab title="Godfather Part I">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:commandButton icon="pi pi-check" style="font-size: 3em"></p:commandButton>
+                                <h:outputText value="FEEL FREE TO CONTACTS US ANYTIME" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form>   
+
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <center>
+                    <p:outputLabel value="SEND MESSAGES" style="font-size: 40px; text-align: center;"></p:outputLabel>
+                </center>
+                <p:tabView scrollable="true" style="margin-top: 10px;">
+                    <p:tab title="CONTACTS">
+                        <center>
+                            <p:tooltip />
+                            <h:form>
+                               
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="NAME" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText  style="width: 280px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="EMAIL" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText  style="width: 280px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="MESSEGES" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputTextarea  style="width: 280px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputTextarea>
+                                </p:panelGrid>
+                                <p:commandButton value="SEND"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                </p:tabView>
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+
+
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h:form>  
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+
+
+
+                <f:facet name="options">
+                    <h:outputText value="CONTACT US" style="margin: 25px; margin-left: 35px; font-size: 20px; color: white;"></h:outputText>
+                    <a href="https://www.facebook.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">FACEBOOK</a>
+                    <a href="https://www.youtube.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">YOU TUBE</a>
+                    <a href="https://mail.google.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">MAIL NOW</a>
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </h:body>
+</html>
+

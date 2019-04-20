@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TO LET MEMBER PANEL</title>
+    </h:head>
+    <h:body>
+
+
+        <!-- *********************HEADER ****************************-->
+
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-home" style="font-size: 1em" action="index.xhtml"></p:commandButton>
+                </center>
+            </div>
+            <div class="ui-g-6">
+                <center>
+                    <p:commandButton style="font-size: 1em" action="index.xhtml" value="TO LET- GET IT BEFORE ITS TOO LATE"></p:commandButton>
+                </center>
+
+            </div>
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-arrow-right" style="font-size: 1em" action="index.xhtml" value="CALL NOW"></p:commandButton>
+
+                </center>
+            </div>
+        </div>
+        
+        
+         <!-- ************************************************************* -->
+
+        <!-- ************************************************************* -->
+        <!-- *****************NAVBAR ************* -->
+        <h:form>  
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- ADMIN PANEL" icon="pi pi-home">
+                </p:submenu>
+                <p:submenu label="VISIT PAGE" icon="pi pi-file">
+                    <p:menuitem value="HOME" url="#" />
+                    <p:separator />
+                    <p:menuitem value="CONTACTS" url="#" />
+                    <p:separator />
+                    <p:menuitem value="ADDVERTISEMENT" url="#" />
+                </p:submenu>
+
+                <p:submenu label="HELP" icon="pi pi-question">
+                    <p:menuitem value="ABOUT US" url="#" />  
+                </p:submenu>
+                <f:facet name="options">
+                   <p:commandLink oncomplete="PF('carDialog').show()" title="View Detail">
+                <p:commandButton icon="ui-icon pi pi-search" style="margin-right: 30px;"  value="SHOW ALL MY ADDS"/>  
+            </p:commandLink>
+                    <p:commandButton action="index.xhtml" value="Logout" icon="pi pi-home" style="margin-right: 30px;" />
+
+                </f:facet>
+            </p:menubar>
+            <!-- ********************* MODAL DIALOGUE *********************** -->
+            
+             <p:dialog header="ENTER USERNAME HERE" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2"  columnClasses="label,value">
+                        <f:facet name="header">
+                            SHOW ONLY THE ADD THAT YOU ADDED
+                        </f:facet>
+
+                        <h:outputText value="ENTER YOUR USERNAME" />
+                        <h:inputText value="#{addvDao.searchByUserName}" style="padding: 10px; font-size: 18px; color: orange;"></h:inputText>
+                        <p:outputLabel/>
+                        <h:commandButton value="SHOW" action="memberAllAdds.xhtml" style="padding: 10px 20px 10px 20px; border-radius: 5px; background-color: orange; color: black;"></h:commandButton>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        <!-- *********************NAVBAR END ******************************-->
+        <!-- ****************CAROUSEL *******************-->
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <h:form id="form">
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="OUR FEATURES" style="margin-bottom:0">
+                        <p:tab title="Godfather Part I">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:commandButton icon="pi pi-check" style="font-size: 3em"></p:commandButton>
+                                <h:outputText value="GIVE ALL YOUR ADDS IN ONE PLACE" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part II">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+                                <p:commandButton icon="pi pi-dollar" style="font-size: 3em"></p:commandButton>
+
+                                <h:outputText value="ADDS WITH MINIMUM COST"  style="font-size: 25px; text-align: center; color: yellow;"/>
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part III">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+                                <p:commandButton icon="pi pi-replay" style="font-size: 3em"></p:commandButton>
+
+                                <h:outputText value="FLEXIBLE AND RESPONSIVE FOR REPLACEMENT" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:carousel>
+                </h:form>   
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+        <!-- ******************* INSERT SECTION START *******************-->
+
+        <div class="ui-g" id="addNew">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <p:tabView scrollable="true">
+
+                    <p:tab title="ADD NEW ADDVERTISEMENT">
+                        <center>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="ID" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.id}" style="width: 350px; background-color: white; margin: 10px; color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TYPE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.addtype}" style="width: 350px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="LOCATION" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.loc}" style="width: 350px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="DATE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:calendar value="#{add.date}" style="background-color: white; margin-left: 60px;"></p:calendar>
+
+                                    <p:outputLabel value="CONTACTS" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.cont}" style="width: 350px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                    <p:outputLabel value="ADD TITLE" style="font-size: 18px; margin-right: 15px;"></p:outputLabel>
+                                    <p:inputText value="#{add.ttl}" style="width: 350px; background-color: white; margin: 10px;color: orange; font-size: 18px;"></p:inputText>
+                                </p:panelGrid>
+                                <br/>
+                                <p:commandButton value="ADD NEW ADDVERTISEMENT" action="#{add.doSendByMember()}"></p:commandButton>
+                                <br/>
+                            </h:form>
+                        </center>
+                    </p:tab>
+                </p:tabView>
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+        <!-- *******************FOOTER ************************** -->
+
+        <!-- *****************FOOTER ************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+
+
+
+                <f:facet name="options">
+                    <h:outputText value="CONTACT US" style="margin: 25px; margin-left: 35px; font-size: 20px; color: white;"></h:outputText>
+                    <p:commandButton icon="pi pi-check-circle" style="font-size: 1em"></p:commandButton>
+                    <a href="https://www.facebook.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">FACEBOOK</a>
+                    <p:commandButton icon="pi pi-check-circle" style="font-size: 1em"></p:commandButton>
+                    <a href="https://www.youtube.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">YOU TUBE</a>
+                    <p:commandButton icon="pi pi-envelope" style="font-size: 1em"></p:commandButton>
+                    <a href="https://mail.google.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">MAIL NOW</a>
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+
+    </h:body>
+</html>
+

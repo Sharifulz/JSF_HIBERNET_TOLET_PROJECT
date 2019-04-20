@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2019 7:50:56 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.exam.model.Houseadd" table="houseadd" catalog="tolet" optimistic-lock="version">
+        <id name="addid" type="java.lang.Integer">
+            <column name="addid" />
+            <generator class="identity" />
+        </id>
+        <property name="addtype" type="string">
+            <column name="addtype" length="45" />
+        </property>
+        <property name="descr" type="string">
+            <column name="descr" length="100" />
+        </property>
+        <property name="loc" type="string">
+            <column name="loc" length="45" />
+        </property>
+        <property name="cont" type="string">
+            <column name="cont" length="45" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="45" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

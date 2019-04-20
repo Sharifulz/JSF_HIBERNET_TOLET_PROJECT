@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TO LET MEMBER LOGIN</title>
+    </h:head>
+    <h:body>
+        <!-- *********************HEADER ****************************-->
+  <div class="ui-g">
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-home" style="font-size: 1em" action="index.xhtml"></p:commandButton>
+                </center>
+            </div>
+            <div class="ui-g-6">
+                <center>
+                    <p:commandButton style="font-size: 1em" action="index.xhtml" value="TO LET- GET IT BEFORE ITS TOO LATE"></p:commandButton>
+                </center>
+
+            </div>
+            <div class="ui-g-3">
+                <center>
+                    <p:commandButton icon="pi pi-arrow-right" style="font-size: 1em" action="index.xhtml" value="CALL NOW"></p:commandButton>
+
+                </center>
+            </div>
+        </div>
+        
+        
+        <!-- ************************************************************* -->
+        <h:form>  
+
+
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+                <p:submenu label="VISIT PAGE" icon="pi pi-file">
+                    <p:menuitem value="HOME" url="#" />
+                    <p:separator />
+                    <p:menuitem value="CONTACTS" url="#" />
+                    <p:separator />
+                    <p:menuitem value="ADDVERTISEMENT" url="#" />
+                </p:submenu>
+
+                <p:submenu label="HELP" icon="pi">
+                    <p:menuitem value="ABOUT US" url="#" />  
+                </p:submenu>
+
+                <p:submenu style="margin-left: 450px; background-color: orange;" label="LOG IN" icon="pi pi-power-off">
+                    <p:menuitem value="ADMIN" url="adminLogin.xhtml" />  
+                    <p:menuitem value="MEMBER" url="memberLogin.xhtml" />  
+                </p:submenu>
+
+            </p:menubar>
+        </h:form>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+                <h:form>
+                    <p:carousel numVisible="1" effect="easeInStrong" headerText="LOG IN FIRST" style="margin-bottom:0">
+                        <p:tab title="Godfather Part I">
+                            <h:panelGrid columns="2" cellpadding="10">
+
+
+                                <p:commandButton icon="pi pi-lock" style="font-size: 2em;"></p:commandButton>
+                                <h:outputText value="YOU MUST LOGIN FIRST TO GO>> MEMBER PANEL" style="font-size: 25px; text-align: center; color: yellow;" />
+
+
+                            </h:panelGrid>
+                        </p:tab> 
+                    </p:carousel>
+                </h:form>   
+
+            </div>
+            <div class="ui-g-2"></div>
+        </div>
+
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-3"></div>
+            <div class="ui-g-6 ui-md-4">
+                <center>
+
+                    <h:form style="margin-left: 120px;">
+                       
+
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <p:inputText placeholder="Username" value="#{mem.name}" />      
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                            <p:password placeholder="Password" value="#{mem.pass}" />      
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="ui-inputgroup">
+                            <p:commandButton value="LOG IN AS MEMBER" action="#{mem.loginMember()}"/>        
+                        </div>
+                    </h:form>
+                </center>
+            </div>
+            <div class="ui-g-3"></div>
+        </div>
+
+        <br/>
+        <br/>
+        <h:form>  
+            <p:menubar style="height: 100px;">
+                <p:separator style="margin-top: 25px;"/>
+
+                <p:submenu label="TO LET- GET IT BEFORE ITS TOO LATE" icon="pi pi-home">
+                </p:submenu>
+
+
+
+                <f:facet name="options">
+                    <h:outputText value="CONTACT US" style="margin: 25px; margin-left: 35px; font-size: 20px; color: white;"></h:outputText>
+                    <a href="https://www.facebook.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">FACEBOOK</a>
+                    <a href="https://www.youtube.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">YOU TUBE</a>
+                    <a href="https://mail.google.com/" styleClass="btn btn-warning" style="margin: 25px; margin-left: 35px; font-size: 20px;">MAIL NOW</a>
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </h:body>
+</html>
+
